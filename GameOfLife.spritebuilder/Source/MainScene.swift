@@ -16,18 +16,14 @@ class MainScene: CCNode {
   var timer = CCTimer()
   
   func play() {
-    timer.invalidate()
-    timer = scheduleBlock({ (timer) -> Void in
-      self.step()
-      self.play()
-    }, delay: CCTime(0.5))
+    schedule("step", interval: CCTime(0.5))
   }
   
   func pause() {
-    timer.invalidate()
+    unschedule("step")
   }
   
-  private func step() {
+  func step() {
     grid.evolveStep()
     
     generationLabel.string = "\(grid.generation)"

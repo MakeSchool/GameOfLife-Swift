@@ -1585,8 +1585,6 @@
 										</array>
 									</dict>
 								</array>
-								<key>selected</key>
-								<true/>
 							</dict>
 							<dict>
 								<key>UUID</key>
@@ -2076,7 +2074,7 @@
 				<key>displayName</key>
 				<string>Grid</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>grid</string>
 				<key>memberVarAssignmentType</key>
 				<integer>1</integer>
 				<key>properties</key>
@@ -2125,6 +2123,8 @@
 						<string>Grid.ccb</string>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 		</array>
 		<key>customClass</key>

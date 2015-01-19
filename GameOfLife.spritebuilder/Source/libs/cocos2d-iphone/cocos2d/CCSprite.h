@@ -226,7 +226,7 @@ typedef struct CCSpriteTexCoordSet {
  *
  *  @return A newly initialized CCSprite object.
  */
-- (id)initWithTexture:(CCTexture *)texture rect:(CGRect)rect rotated:(BOOL)rotated;
+- (id)initWithTexture:(CCTexture *)texture rect:(CGRect)rect rotated:(BOOL)rotated NS_DESIGNATED_INITIALIZER;
 
 
 /// -----------------------------------------------------------------------

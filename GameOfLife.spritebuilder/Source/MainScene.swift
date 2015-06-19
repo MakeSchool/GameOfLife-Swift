@@ -10,9 +10,9 @@ import Foundation
 
 class MainScene: CCNode {
   
-  var grid: Grid!
-  var generationLabel: CCLabelTTF!
-  var populationLabel: CCLabelTTF!
+  weak var grid: Grid!
+  weak var generationLabel: CCLabelTTF!
+  weak var populationLabel: CCLabelTTF!
   var timer = CCTimer()
   
   func play() {

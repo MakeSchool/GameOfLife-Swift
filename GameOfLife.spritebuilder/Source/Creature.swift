@@ -10,14 +10,14 @@ class Creature: CCSprite {
   
   var isAlive: Bool = false {
     didSet {
-      self.visible = isAlive
+      visible = isAlive
     }
   }
   
   var livingNeighborsCount = 0
   
   
-  convenience init() {
+  convenience override init() {
     self.init(imageNamed: "Assets/bubble.png")
     anchorPoint = CGPoint(x: 0, y: 0)
   }

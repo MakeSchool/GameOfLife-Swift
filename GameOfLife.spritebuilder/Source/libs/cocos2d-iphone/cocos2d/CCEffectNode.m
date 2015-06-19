@@ -66,17 +66,17 @@
 	return self;
 }
 
-+(id)effectNodeWithWidth:(int)w height:(int)h
++(instancetype)effectNodeWithWidth:(int)w height:(int)h
 {
     return [[CCEffectNode alloc] initWithWidth:w height:h];
 }
 
-+(id)effectNodeWithWidth:(int)w height:(int)h pixelFormat:(CCTexturePixelFormat)format
++(instancetype)effectNodeWithWidth:(int)w height:(int)h pixelFormat:(CCTexturePixelFormat)format
 {
     return [[CCEffectNode alloc] initWithWidth:w height:h pixelFormat:format];
 }
 
-+(id)effectNodeWithWidth:(int)w height:(int)h pixelFormat:(CCTexturePixelFormat)format depthStencilFormat:(GLuint)depthStencilFormat
++(instancetype)effectNodeWithWidth:(int)w height:(int)h pixelFormat:(CCTexturePixelFormat)format depthStencilFormat:(GLuint)depthStencilFormat
 {
     return [[CCEffectNode alloc] initWithWidth:w height:h pixelFormat:format depthStencilFormat:depthStencilFormat];
 }
@@ -159,7 +159,11 @@
     if (_effect)
     {
         _effectRenderer.contentSize = self.contentSizeInPoints;
-        if ([_effect prepareForRenderingWithSprite:_sprite] == CCEffectPrepareSuccess)
+
+        CCEffectPrepareResult prepResult = [_effect prepareForRenderingWithSprite:_sprite];
+        NSAssert(prepResult.status == CCEffectPrepareSuccess, @"Effect preparation failed.");
+
+        if (prepResult.changes & CCEffectPrepareUniformsChanged)
         {
             // Preparing an effect for rendering can modify its uniforms
             // dictionary which means we need to reinitialize our copy of the
@@ -186,7 +190,7 @@
                           } mutableCopy];
     
     // And then copy the new effect's uniforms into the node's uniforms dictionary.
-    [_shaderUniforms addEntriesFromDictionary:_effect.shaderUniforms];
+    [_shaderUniforms addEntriesFromDictionary:_effect.effectImpl.shaderUniforms];
 }
 
 @end

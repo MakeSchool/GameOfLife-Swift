@@ -8,6 +8,20 @@
 
 #import "CCSprite.h"
 
+// not documented, effect "utils" are considered private
+
+typedef struct CCEffectBlurParams
+{
+    NSUInteger trueRadius;
+    NSUInteger radius;
+    NSUInteger numberOfOptimizedOffsets;
+    GLfloat sigma;
+
+} CCEffectBlurParams;
+
+CCNode* CCEffectUtilsGetNodeParent(CCNode *node);
+CCScene* CCEffectUtilsGetNodeScene(CCNode *node);
+
 CCNode* CCEffectUtilsFindCommonAncestor(CCNode *first, CCNode *second);
 GLKMatrix4 CCEffectUtilsTransformFromNodeToAncestor(CCNode *descendant, CCNode *ancestor);
 GLKMatrix4 CCEffectUtilsTransformFromNodeToNode(CCNode *first, CCNode *second, BOOL *isPossible);
@@ -21,3 +35,5 @@ float CCEffectUtilsConditionShininess(float shininess);
 float CCEffectUtilsConditionFresnelBias(float bias);
 float CCEffectUtilsConditionFresnelPower(float power);
 void CCEffectUtilsPrintMatrix(NSString *label, GLKMatrix4 matrix);
+
+CCEffectBlurParams CCEffectUtilsComputeBlurParams(NSUInteger radius);

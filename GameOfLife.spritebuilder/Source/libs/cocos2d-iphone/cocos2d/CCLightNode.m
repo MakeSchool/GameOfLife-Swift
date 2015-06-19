@@ -13,8 +13,6 @@
 #import "CCLightNode_Private.h"
 
 
-#if CC_EFFECTS_EXPERIMENTAL
-
 @implementation CCLightNode
 
 -(id)init
@@ -47,25 +45,18 @@
         _cutoffRadius = 0.0f;
         _halfRadius = 0.5f;
         
-        if (type == CCLightDirectional)
-        {
-            _depth = 1.0f;
-        }
-        else
-        {
-            _depth = 100.0f;
-        }
+        _depth = 100.0f;
     }
     
     return self;
 }
 
-+(id)lightWithType:(CCLightType)type groups:(NSArray*)groups color:(CCColor *)color intensity:(float)intensity
++(instancetype)lightWithType:(CCLightType)type groups:(NSArray*)groups color:(CCColor *)color intensity:(float)intensity
 {
     return [[self alloc] initWithType:type groups:groups color:color intensity:intensity];
 }
 
-+(id)lightWithType:(CCLightType)type groups:(NSArray*)groups color:(CCColor *)color intensity:(float)intensity specularColor:(CCColor *)specularColor specularIntensity:(float)specularIntensity ambientColor:(CCColor *)ambientColor ambientIntensity:(float)ambientIntensity
++(instancetype)lightWithType:(CCLightType)type groups:(NSArray*)groups color:(CCColor *)color intensity:(float)intensity specularColor:(CCColor *)specularColor specularIntensity:(float)specularIntensity ambientColor:(CCColor *)ambientColor ambientIntensity:(float)ambientIntensity
 {
     return [[self alloc] initWithType:type groups:groups color:color intensity:intensity specularColor:specularColor specularIntensity:specularIntensity ambientColor:ambientColor ambientIntensity:ambientIntensity];
 }
@@ -127,5 +118,3 @@
 }
 
 @end
-
-#endif

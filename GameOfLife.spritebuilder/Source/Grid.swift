@@ -14,9 +14,9 @@ class Grid: CCSprite {
   var totalAlive = 0
   var generation = 0
   
-  private var cellWidth: CGFloat = 0
-  private var cellHeight: CGFloat = 0
-  private var gridArray: [[Creature]]!
+  var cellWidth: CGFloat = 0
+  var cellHeight: CGFloat = 0
+  var gridArray: [[Creature]]!
   
   override func onEnter() {
     super.onEnter()
@@ -25,7 +25,7 @@ class Grid: CCSprite {
     userInteractionEnabled = true
   }
   
-  private func setupGrid() {
+  func setupGrid() {
     cellWidth = contentSize.width / CGFloat(GridColumns)
     cellHeight = contentSize.height / CGFloat(GridRows)
     
@@ -54,7 +54,7 @@ class Grid: CCSprite {
     generation++
   }
   
-  private func countNeighbors() {
+  func countNeighbors() {
     for row in 0..<gridArray.count {
       for column in 0..<gridArray[row].count {
         var currentCreature = gridArray[row][column]
@@ -76,7 +76,7 @@ class Grid: CCSprite {
     }
   }
   
-  private func updateCreatures() {
+  func updateCreatures() {
     totalAlive = 0
     for row in 0..<gridArray.count {
       for column in 0..<gridArray[row].count {
@@ -95,7 +95,7 @@ class Grid: CCSprite {
     }
   }
   
-  private func isValidIndex(#x: Int, y: Int) -> Bool {
+  func isValidIndex(#x: Int, y: Int) -> Bool {
     return !(x < 0 || y < 0 || x >= GridRows || y >= GridColumns)
   }
   
@@ -107,7 +107,7 @@ class Grid: CCSprite {
     creature.isAlive = !creature.isAlive
   }
   
-  private func creatureForTouchPosition(touchPosition: CGPoint) -> Creature {
+  func creatureForTouchPosition(touchPosition: CGPoint) -> Creature {
     var row = Int(touchPosition.y / cellHeight)
     var column = Int(touchPosition.x / cellWidth)
     return gridArray[row][column]
